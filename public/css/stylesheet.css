@@ -1,0 +1,224 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('/fonts/Monoglyceride.ttf');
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: lightblue;
+    min-width: 6%;
+}
+
+button:hover {
+    background-color: deepskyblue;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 35%;
+    padding-bottom: 20px;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #fa39ff;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    animation: zoom 0.6s
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+.backgroundnav {
+    background-color: lightblue;
+}
+
+h1 {
+    font-family: myFirstFont;
+}
+
+nav {
+    font-family: myFirstFont;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbarright {
+    float: right;
+    text-align: right;
+}
+
+.carousel-indicators li {
+    width: calc(5px + 0.8vw);
+    height: calc(5px + 0.8vw);
+    border-radius: 100%;
+}
+
+.logofoot {
+    font-size: calc(12px + 1.5vw);
+    color: #e4eaff;
+    top: 35%;
+    left: 1%;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 2;
+    font-family: myFirstFont;
+}
+
+
+button:focus {
+    outline: 0;
+}
+
+.opacity {
+    opacity: 0.85;
+}
+
+body {
+    background-image: url(../images/abstract-art-artificial-131634.jpg);
+    height: 100%;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+    background-attachment: fixed;
+}
+
+
+.backgrounddiv {
+    background-color: light;
+}
+
+ul.homeicon {
+    padding-left: 40px;
+    list-style-image: url(../images/homeicon.png);
+    width: 200px;
+}
+
+ul.mailicon {
+    padding-left: 40px;
+    list-style-image: url(../images/mailicon.png);
+    width: 200px;
+}
+
+ul.phoneicon {
+    padding-left: 40px;
+    list-style-image: url(../images/phoneicon.png);
+    width: 200px;
+}
+
+}
+.nomargin {
+    margin-bottom: 0em;
+}
+
+.wrapper {
+    display: block;
+    max-width: 500px;
+    margin: 1% auto;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.text, .submit {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 24px;
+}
+
+.text {
+    border: 1px solid #ccc;
+
+}
+
+.submit {
+    text-transform: uppercase;
+    background: lightblue;
+    color: #fff;
+}
+
+.message {
+    vertical-align: middle;
+    margin-bottom: 15px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.img-width {
+    max-width: 100%;
+}
+
+.message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 100px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

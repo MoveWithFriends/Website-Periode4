@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
+    <h1>Profile</h1>
+
+    <dl class="dl-horizontal">
+        <dt>Firstname</dt>
+        <dd>{{ user.firstname }}</dd>
+        <dt>Lastname</dt>
+        <dd>{{ user.lastname }}</dd>
+        <dt>email</dt>
+        <dd>{{ user.email}}</dd>
+        <dt>Phonennumber</dt>
+        <dd>{{ user.phonenumber}}</dd>
+        <dt>Birthdate</dt>
+        <dd>{{ user.birthdate}}</dd>
+        <dt>joindate</dt>
+        <dd>{{ user.joindate }}</dd>
+    </dl>
+
+    <a href="/profile/edit">Edit</a>
+</article>
+{% endblock %}

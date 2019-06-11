@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+{% block script %}
+{% endblock %}
+
+{% block body %}
+<article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
+    <h1>Profile</h1>
+
+    {% if user.errors is not empty %}
+    <p>Errors:</p>
+    <ul>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post" id="formProfile" action="/profile/update">
+        <div class="form-group">
+            <label for="firstName">Voornaam</label>
+            <input id="firstName" type="text" class="form-control" name="firstname" placeholder="Voornaam"
+                   value="{{user.firstname}}">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Achternaam</label>
+            <input id="lastName" type="text" class="form-control" name="lastname" placeholder="Achternaam"
+                   value="{{user.lastname}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" class="form-control" name="email" placeholder="Email adres"
+                   value="{{user.email}}">
+        </div>
+        <div class="form-group">
+            <label for="password">Wachtwoord</label>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Wachtwoord"
+                   aria-describedby="helpBlock">
+            <span id="helpBlock" class="helpBlock"> Vul niet in indien je het wachtwoord niet wilt aanpassen</span>
+
+        </div>
+        <!--    <div>
+                <label for="inputPasswordConfirmation">Herlaas wachtwoord</label>
+                <input id="inputPasswordConfirmation" type="password" class="text" name="password_confirmation" placeholder="Wachtwoord" >
+            </div>-->
+        <div class="form-group">
+            <label for="phoneNumber">Telefoonnummer</label>
+            <input id="phoneNumber" type="text" class="form-control" name="phonenumber"
+                   pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" placeholder="0612345678"
+                   value="{{user.phonenumber}}">
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Geboortedatum</label>
+            <input id="birthDate" type="date" class="form-control" name="birthdate"
+                   placeholder="Geboortedatum (dd-mm-jjjj)" value="{{user.birthdate}}">
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <p>Geslacht</p>
+                <label for="male"></label>
+                <input id="male" type="radio" name="gender" value="man" checked> Man<br>
+                <label for="female"></label>
+                <input id="female" type="radio" name="gender" value="vrouw"> Vrouw<br>
+            </div>
+
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default">Save</button>
+        <a href="/profile/show">Cancel</a>
+
+    </form>
+</article>
+{% endblock %}
