@@ -4,23 +4,70 @@
 
 {% block body %}
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
-    <h1>Profile</h1>
+    <h1>Profiel</h1>
 
     <dl class="dl-horizontal">
-        <dt>Firstname</dt>
+        <dt>Voornaam</dt>
         <dd>{{ user.firstname }}</dd>
-        <dt>Lastname</dt>
+        <dt>Achternaam</dt>
         <dd>{{ user.lastname }}</dd>
-        <dt>email</dt>
-        <dd>{{ user.email}}</dd>
-        <dt>Phonennumber</dt>
-        <dd>{{ user.phonenumber}}</dd>
-        <dt>Birthdate</dt>
-        <dd>{{ user.birthdate}}</dd>
-        <dt>joindate</dt>
+        <dt>Email</dt>
+        <dd>{{ user.email }}</dd>
+        <dt>Telefoonnummer</dt>
+        <dd>{{ user.phonenumber }}</dd>
+        <dt>Geboortedatum</dt>
+        <dd>{{ user.birthdate }}</dd>
+        <dt>Aanmelddatum</dt>
         <dd>{{ user.joindate }}</dd>
+        <dt>Voorkeur</dt>
+        <dd>{{ user.preferredgender }}</dd>
     </dl>
 
-    <a href="/profile/edit">Edit</a>
+
+    <a href="/profile/edit">Aanpassen</a>
+
+    <h2>Gekozen activiteiten</h2>
+
+    <dl class="dl-horizontal">
+        {% for activity in activities %}
+        <dt></dt>
+        <dd>{{ activity.Interest }}</dd>
+        {% endfor %}
+    </dl>
+
+    <h2>Gekozen tijdsmomenten</h2>
+
+    <dl class="dl-horizontal">
+        {% for available in availables %}
+
+        <dt></dt>
+        <dd>{{ available[0] }}{{ available[1] }}</dd>
+
+        {% endfor %}
+
+    </dl>
+
+    {% if matches is not empty %}
+    <h2>Matches</h2>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>Naam</th>
+            <th>Mail</th>
+            <th>Activiteit</th>
+            <th>Wanneer</th>
+        </tr>
+
+        {% for mat in matches %}
+        <tr>
+            <td> {{ mat[0]}}</td>
+            <td> {{ mat[1]}}</td>
+            <td> {{ mat[2]}}</td>
+            <td> {{ mat[3]}}{{mat[4]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </dl>
 </article>
+{%endif%}
 {% endblock %}

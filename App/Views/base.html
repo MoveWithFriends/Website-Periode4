@@ -13,19 +13,27 @@
     <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
     <script type="text/javascript"
             src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>$(document).ready(function () {
+        $("input[checked]").next('input[type=checkbox]').remove();
+    });
+    </script>
 </head>
 <body>
 {% block header %}
 <div>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div id="google_translate_element"
-             style=" position: absolute; z-index: 2; right: 1%; top: 2%; color: white; alt="
-        ">
+             alt="" style=" position: absolute; z-index: 2; right: 1%; top: 2%; color: white;">
     </div>
     <a href="../">
         <img class="img-responsive" src="/images/logomwf.png" style=" position: absolute; z-index: 2;" alt="">
     </a>
-    <p class="logofoot"> Move with Friends</p>
+        {% if current_user %}
+        <p class="logofoot"> Hallo {{current_user.firstname }}</p>
+        {% else %}
+        <p class="logofoot" style=" position: absolute; z-index: 2;"> Move with Friends</p>
+        {% endif%}
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -87,9 +95,17 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/Availability/index">Beschikbaarheid<span class="sr-only">(current)</span></a>
                 </li>
+                {%if count == '0' %}
+                <li class="nav-item active"><a class="nav-link" href="/profile/show">Profiel</a></li>
+                {% else %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="/profile/show">Profiel<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" data-html="true" data-placement="bottom"
+                       data-toggle="popover"
+                       href="/profile/show">
+                        <span class="badge badge-success">{{count}}</span> Profiel </a>
                 </li>
+                {% endif %}
+                <li class="nav-item active"><a class="nav-link" href="/logout"> Uitloggen</a></li>
                 {% endif %}
             </ul>
         </div>

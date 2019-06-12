@@ -21,7 +21,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'movewithfriends';
+    const DB_NAME = 'MWFregistration';
     /*    const DB_NAME = 'md319900db449972';*/
 
     /**
@@ -36,7 +36,7 @@ class Config
      * @var string
      */
     /*    const DB_PASSWORD = 'Tweeling33$';*/
-    const DB_PASSWORD = '';
+    const DB_PASSWORD = 'root';
     /**
      * Show or hide error messages on screen
      * @var boolean

@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
+{% block script %}
 
+{%  endblock %}
 {% block title %}Activities{% endblock %}
 
 {% block body %}
 
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
 
-    <h1>Beschikbaarheid</h1>
-    <p>Hieronder de tijdstippen waar je uit kunt kiezen.</p>
-    <div class="wrapper ">
         <form action="/Availability/select" id="formActivity" method="post">
-            <!--<h2>Beschikbaarheid</h2>-->
+            <h2>Beschikbaarheid</h2>
             <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>Dag</th>
@@ -22,11 +21,23 @@
                     {% for day in days %}
                     <tr>
                         <td> {{day.Day}}</td>
-                        {% for timeslot in timeslots %}
+                        {% for timeslot in timeslots%}
+
                         <td>
+
+                            {% for available in availables %}
+                            {% if (available.id_Timeslot == timeslot.id) and (available.id_Day == day.id) %}
+                            <input checked name="available[]"
+                                   style="child-align: center" type="checkbox" value="{{day.id}} {{timeslot.id}}"/>
+                            {%endif%}
+                            {%endfor%}
+
                             <input name="available[]" style="child-align: center"
-                                   type="checkbox" value="{{day.id}}{{timeslot.id}}"/></td>
+                                   type="checkbox" value="{{day.id}} {{timeslot.id}}"/>
+                        </td>
+
                         {% endfor %}
+
 
                     </tr>
                     {% endfor %}
@@ -34,8 +45,10 @@
 
             </table>
             <button class="btn btn-default" type="submit" value="Submit">Opslaan</button>
+
         </form>
-    </div>
+
+
 </article>
 
 

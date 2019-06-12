@@ -3,9 +3,13 @@
 {% block title %}Activities{% endblock %}
 
 {% block body %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[checked]").next('input[type=checkbox').remove();
+    })
+</script>
 
-
-<article class="opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
+<article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
 
     <h1>Activiteiten en beschikbaarheid</h1>
     <p>Hieronder de activiteiten waar je uit kunt kiezen.</p>
@@ -29,16 +33,7 @@
                 </tr>
                 {% endfor %}
             </ul>
-            <ul>
-                {% for interest in interests %}
-                <tr>
-                    {%if interest.is_active %}
-                    <td> {{interest.Interest}}</td>
-                    <input type="checkbox" name="Interest[]" value="{{interest.id}}"/></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </ul>
+
         </table>
 
         <button type="submit" class="btn btn-default" value="Submit">Opslaan</button>

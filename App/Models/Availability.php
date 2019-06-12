@@ -3,16 +3,17 @@
 
 namespace App\Models;
 
+use Core\Model;
 use PDO;
 
 
-class Availability extends \Core\Model
+class Availability extends Model
 {
     public static function getSelectedTimeslot($timeslot)
     {
-        $sql = 'SELECT Timeslot.Timeslot
+        $sql = 'SELECT Timeslot
                         FROM Timeslot
-                        WHERE timeslot.id = :id_timeslot';
+                        WHERE id = :id_timeslot';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -21,14 +22,14 @@ class Availability extends \Core\Model
         /*        $stmt->bindValue(':id_timeslot', $timeslot, PDO::PARAM_INT);*/
 
         $stmt->execute(array(':id_timeslot' => $timeslot));
-        return $stmt->fetchAll();
+        return $stmt->fetch();
     }
 
     public static function getSelectedDay($day)
     {
-        $sql = 'SELECT Day.Day 
+        $sql = 'SELECT Day 
                         FROM Day 
-                        WHERE day.id = :id_day';
+                        WHERE id = :id_day';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -38,7 +39,7 @@ class Availability extends \Core\Model
 
 
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch();
     }
 
     public static function getSelected($id)

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Core\Model;
 use PDO;
 
 
@@ -10,7 +11,7 @@ use PDO;
  *
  * PHP version 7.0
  */
-class Admin extends \Core\Model
+class Admin extends Model
 {
 
     /**
@@ -124,6 +125,27 @@ class Admin extends \Core\Model
         $stmt = $db->prepare($sql);
 
         $stmt->execute(array(':id' => $user, ':is_active' => $is_admin));
+    }
+
+    public static function activateAdminUser($user)
+    {
+        $sql = 'UPDATE users
+                SET is_admin = :is_admin
+                WHERE id =:id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute(array(':id' => $user, ':is_admin' => 1));
+    }
+
+    public static function clearAdminUser($current)
+    {
+        $sql = 'UPDATE users SET is_admin = 0 WHERE id <> :current';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array(':current' => $current));
+
     }
 
 

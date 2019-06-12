@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Core\Model;
 use PDO;
 use \App\Token;
 use \App\Mail;
 use \Core\View;
+
 
 /**
  * User model
  *
  * PHP version 7.0
  */
-class User extends \Core\Model
+class User extends Model
 {
 
     /**
@@ -34,6 +36,7 @@ class User extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
+        /*        $this->activity = Interest::getInterest();*/
     }
 
     /**
@@ -54,8 +57,8 @@ class User extends \Core\Model
             $this->activation_token = $token->getValue();
 
 
-            $sql = 'INSERT INTO users (firstname, lastname, email, password_hash, phonenumber, gender, birthdate, activation_hash)
-                    VALUES (:firstname, :lastname, :email, :password_hash, :phonenumber, :gender, :birthdate, :activation_hash)';
+            $sql = 'INSERT INTO users (firstname, lastname, email, password_hash, phonenumber, gender, preferredgender, birthdate, activation_hash)
+                    VALUES (:firstname, :lastname, :email, :password_hash, :phonenumber, :gender, :preferredgender, :birthdate, :activation_hash)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -66,6 +69,7 @@ class User extends \Core\Model
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':phonenumber', $this->phonenumber, PDO::PARAM_STR);
             $stmt->bindValue(':gender', $this->gender, PDO::PARAM_STR);
+            $stmt->bindValue(':preferredgender', $this->preferredgender, PDO::PARAM_STR);
             $stmt->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
             $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
 
@@ -76,7 +80,7 @@ class User extends \Core\Model
     }
 
     /**
-     * Validate current property values, adding valiation error messages to the errors array property
+     * Validate current property values, adding validation error messages to the errors array property
      *
      * @return void
      */
@@ -84,41 +88,65 @@ class User extends \Core\Model
     {
         // Name
         if ($this->firstname == '') {
-            $this->errors[] = 'Name is required';
+            $this->errors[] = 'Voornaam is verplicht';
         }
 
         // email address
-        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
-            $this->errors[] = 'Invalid email';
+        if ($this->email == '') {
+            $this->errors[] = 'Emailadres ontbreekt';
+        } elseif (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
+            $this->errors[] = 'Ongeldig emailadres';
         }
         if (static::emailExists($this->email, $this->id ?? null)) {
-            $this->errors[] = 'email already taken';
+            $this->errors[] = 'Email is al in gebruik';
         }
 
-        if ($this->phonenumber == '') {
-            $this->errors[] = ' Telefoonnummer is noodzakelijk';
-        }
-        if ((preg_match("/[^0-9]/", $this->phonenumber == 0)) && strlen($this->phonenumber) == 10) {
-            $this->errors[] = ' Telefoonnummer is noodzakelijk en moet 10 getallen lang zijn, startend met een 0';
-        }
 
         // Password
 
         if (isset($this->password)) {
 
             if (strlen($this->password) < 6) {
-                $this->errors[] = 'Please enter at least 6 characters for the password';
+                $this->errors[] = 'Wachtwoord moet uit minimaal 6 karakters bestaan';
+            } else {
+
+                if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+                    $this->errors[] = 'Wachtwoord moet tenminste een letter bevatten';
+                }
+
+                if (preg_match('/.*[0-9]+.*/i', $this->password) == 0) {
+                    $this->errors[] = 'Wachtwoord moet tenminste een cijfer bevatten';
+                }
             }
 
-            if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one letter';
+        }
+        if (isset($this->phonenumber)) {
+
+            /*            if (strlen($this->phonenumber) <> 10) {
+                            $this->errors[] = 'Telefoonnummer moet uit 10 cijfers bestaan';
+                        }*/
+            if ($this->phonenumber == '') {
+                $this->errors[] = 'Telefoonnummer is verplicht';
+            } else {
+
+                if (preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im', $this->phonenumber) == 0) {
+                    $this->errors[] = 'Telefoonummer voldoet niet aan de voorwaarden';
+                }
             }
+        }
+        if (isset($this->birthdate)) {
 
-            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one number';
-            }
+            /*            if (strlen($this->phonenumber) <> 10) {
+                            $this->errors[] = 'Telefoonnummer moet uit 10 cijfers bestaan';
+                        }*/
+            if ($this->birthdate == '') {
+                $this->errors[] = 'Geboortedatum is verplicht';
+            } /*else {
 
-
+                if (preg_match('/^([1-9]|[1][012])\/|-([1-9]|[1][0-9]|[2][0-9]|[3][01])\/|-([1][6-9][0-9][0-9]|[2][0][01][0-9])$/', $this->birthdate) == 0) {
+                    $this->errors[] = 'Geboortedatum voldoet niet aan de voorwaarden';
+                }
+            }*/
         }
     }
 
@@ -171,11 +199,11 @@ class User extends \Core\Model
     {
         $user = static::findByEmail($email);
 
-        if ($user && $user->is_active) {
+        if ($user && $user->is_active)
             if (password_verify($password, $user->password_hash)) {
                 return $user;
+
             }
-        }
 
         return false;
     }
@@ -387,6 +415,7 @@ class User extends \Core\Model
 
     public function updateProfile($data)
     {
+
         $this->firstname = $data['firstname'];
         $this->lastname = $data['lastname'];
 
@@ -396,7 +425,7 @@ class User extends \Core\Model
         $this->email = $data['email'];
         $this->phonenumber = $data['phonenumber'];
         $this->birthdate = $data['birthdate'];
-
+        $this->preferredgender = $data['preferredgender'];
         $this->validate();
         if (empty($this->errors)) {
             $sql = 'UPDATE users
@@ -404,7 +433,9 @@ class User extends \Core\Model
                         lastname = :lastname,
                         email = :email,
                         phonenumber = :phonenumber,
-                        birthdate = :birthdate';
+                        birthdate = :birthdate,
+                        preferredgender = :preferredgender
+                        ';
 
             //Add password if it is set
             if (isset($this->password)) {
@@ -420,6 +451,7 @@ class User extends \Core\Model
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':phonenumber', $this->phonenumber, PDO::PARAM_STR);
             $stmt->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
+            $stmt->bindValue(':preferredgender', $this->preferredgender, PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
             //add password if it is set
@@ -433,6 +465,70 @@ class User extends \Core\Model
         }
         return false;
 
+    }
+
+    /*    public function permissions()
+        {
+            return $this->('App\Models\UserPermission', 'User_id');
+        }*/
+    public static function addUserActivity($data, $user)
+    {
+        $sql = "INSERT INTO Likes (id_user, id_Interest) VALUES (:user_id, :id)";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $user, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $data, PDO::PARAM_INT);
+        $stmt->execute();
+
+    }
+
+    public static function deleteUserActivity($userid)
+    {
+        /** Alle gegevens van de current user moeten uit de likes tabel worden gehaald
+         *
+         **/
+        $sql = "DELETE FROM Likes WHERE id_user = :user_id";
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $userid, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public static function addUserAvailable($user_id, $day, $timeslot)
+    {
+        $sql = "INSERT INTO Available (id_user, id_Day, id_Timeslot) VALUES (:user_id, :day_id, :timeslot_id)";
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':day_id', $day, PDO::PARAM_INT);
+        $stmt->bindValue(':timeslot_id', $timeslot, PDO::PARAM_INT);
+        $stmt->execute();
+
+    }
+
+    public static function deleteUserAvailable($user_id)
+    {
+        /** Alle gegevens van de current user moeten uit de likes tabel worden gehaald
+         *
+         **/
+        $sql = "DELETE FROM Available WHERE id_user = :user_id";
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        /**current user ID moet nog gekoppeld worden aan de user_id. Moet nog uitzoeken HOE
+         **/
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
 

@@ -11,6 +11,7 @@ use \App\Models\Admin;
 use \App\Models\user;
 
 
+
 class Administrator extends authenticated
 {
     private $interests;
@@ -114,9 +115,10 @@ class Administrator extends authenticated
 
     public function deleteTimeslotAction()
     {
-        foreach ($_POST['timeslotDelete'] as $selected) {
+        foreach ($_POST['TimeslotDelete'] as $selected) {
             $this->deleted = Admin::deleteTimeslot($selected);
         }
+        $this->redirect('/administrator/timeslot');
     }
 
     public function addTimeslotAction()
@@ -150,25 +152,18 @@ class Administrator extends authenticated
 
     public function adminupdateAction()
     {
-        if (isset($_POST['submit'])) {
+        $this->adminupdate = admin::clearAdminUser($this->user->id);
+        if (isset($_POST['is_admin'])) {
+            print_r($_POST['is_admin']);
+            foreach ($_POST['is_admin'] as $selected) {
+                $this->adminupdate = Admin::activateAdminUser($selected);
 
-            $user = $this->user->id;
-
-            if ($_POST['is_admin'] = true) {
-                $is_admin = 1;
-            } else {
-                $is_admin = 0;
             }
 
-            $this->users = Admin::updateAdmin($is_admin, $user);
-            View::renderTemplate('Administrator/users.html', [
-                'users' => $this->users
-            ]);
+            $this->redirect('/administrator/users');
             exit;
         } else {
-            View::renderTemplate('Administrator/users.html', [
-                'users' => $this->users
-            ]);
+            $this->redirect('/administrator/users');
             exit;
         }
     }

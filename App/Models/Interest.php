@@ -3,9 +3,10 @@
 
 namespace App\Models;
 
+use Core\Model;
 use PDO;
 
-class Interest extends \Core\Model
+class Interest extends Model
 {
 
 
@@ -42,6 +43,21 @@ class Interest extends \Core\Model
         return $stmt->fetchAll();
     }
 
+    public static function getInterestName($id)
+    {
+        $sql = 'SELECT interest.Interest
+                FROM Interest
+                WHERE interest.id = :id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute(array(':id' => $id));
+        return $stmt->fetch();
+    }
+
 
     public static function activateInterest($id)
     {
@@ -53,6 +69,7 @@ class Interest extends \Core\Model
         $stmt = $db->prepare($sql);
 
         $stmt->execute(array(':id' => $id));
+
 
     }
 

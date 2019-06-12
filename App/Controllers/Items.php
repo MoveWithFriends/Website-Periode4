@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
-use \App\A  uth;
+use \App\Auth;
 
 
 

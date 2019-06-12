@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
 use \Core\View;
 use \App\Models\User;
 
@@ -10,7 +11,7 @@ use \App\Models\User;
  *
  * PHP version 7.0
  */
-class Password extends \Core\Controller
+class Password extends Controller
 {
 
     /**
@@ -42,14 +43,6 @@ class Password extends \Core\Controller
 
     }
 
-    /*    {
-        If( User::sendPasswordReset($_POST['email'])){
-            View::renderTemplate('Password/reset_requested.html');
-        }else{
-            View::renderTemplate('Password/email_not_in_database.html');
-
-        }
-    }*/
     public function resetAction()
     {
         $token = $this->route_params['token'];

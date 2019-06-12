@@ -2,13 +2,14 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
 use \Core\View;
 use \App\Models\User;
 use \App\Auth;
 use \App\Flash;
 
 
-Class Login extends \Core\Controller
+Class Login extends Controller
 {
     /**
      * Show the login page
@@ -34,10 +35,6 @@ Class Login extends \Core\Controller
         if ($user) {
 
             Auth::login($user, $remember_me);
-
-            ///remeber the login here
-            /// //...
-            ///
 
             Flash::addMessage('Inloggen geslaagd');
 
@@ -67,7 +64,7 @@ Class Login extends \Core\Controller
 
     public function showLogoutMessage()
     {
-        Flash::addMessage('Logout successful');
+        Flash::addMessage('Uitloggen geslaagd');
         $this->redirect('/');
     }
 

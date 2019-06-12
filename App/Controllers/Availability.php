@@ -7,7 +7,6 @@ use App\Flash;
 use App\Models\Timeslot;
 use App\Models\User;
 use \Core\View;
-use \App\Models\Interest;
 use \App\Models\Day;
 
 
@@ -28,18 +27,19 @@ class availability extends authenticated
 
     public function __construct()
     {
-        //var_dump(Interest::getInterests());
         $this->timeslots = Timeslot::getTimeslot();
         $this->days = Day::getDay();
-        /*$this->available = Available::getAvailable();*/
 
     }
 
     public function indexAction()
     {
+        $availables = \App\Models\Availability::getSelected($this->user->id);
+
         view::rendertemplate('Available/index.html', [
             'timeslots' => $this->timeslots,
-            'days' => $this->days
+            'days' => $this->days,
+            'availables' => $availables
         ]);
 
 
@@ -48,7 +48,6 @@ class availability extends authenticated
     public function editAction()
     {
         echo 'edit action';
-
 
     }
 
@@ -63,18 +62,14 @@ class availability extends authenticated
          */
         if (isset($_POST['available']) && ($_POST['available'] !== ""))
             foreach ($_POST['available'] as $selected) {
-
+                $selected = explode(' ', $selected);
                 $day = $selected[0];
                 $timeslot = $selected[1];
 
                 User::addUserAvailable($user_id, $day, $timeslot);
-
             }
 
-        $this->redirect('/profile/show', [
-            'timeslots' => $this->timeslots,
-            'days' => $this->days
-        ]);
+        $this->redirect('/profile/show');
 
     }
 
