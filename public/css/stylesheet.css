@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFirstFont;
-    src: url('../fonts/Monoglyceride.ttf');
+    src: url('/fonts/Monoglyceride.ttf');
 }
 
 /* Set a style for all buttons */
@@ -222,3 +222,4 @@ ul.phoneicon {
     display: table;
     clear: both;
 }
+
