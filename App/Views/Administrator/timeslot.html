@@ -5,16 +5,13 @@
 {% block body %}
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
     <script src="/js/csvDownload.js"></script>
-    <h1>Activiteiten overzicht</h1>
-
-    <nav class="navbar navbar-expand-lg sticky-top" id="kopje1">
-        <ul class="nav navbar-nav flex-row justify-content-between">
-            <li>
-                <a href="/administrator/Activity">Activiteiten</a>
-                <a href="/administrator/Timeslot">Timeslots</a>
-                <a href="/administrator/Users">Gebruikers</a>
-            </li>
-        </ul>
+    <h1>Beschikbaarheid overzicht</h1>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <a href="/administrator/Activity" class="btn btn-default" role="button">Activiteiten</a>
+            <a href="/administrator/Timeslot" class="btn btn-default active" role="button">Beschikbaarheid</a>
+            <a href="/administrator/Users" class="btn btn-default" role="button">Gebruikers</a>
+        </form>
     </nav>
     {% for message in flash_messages %}
     <div class="alert alert-{{ message.type}}">
@@ -33,7 +30,7 @@
                 <tr>
                     <td> {{timeslot.Timeslot}}</td>
                     <td>
-                        <input name="timeslotDelete" type="checkbox" value="{{timeslot.id}}"/></td>
+                        <input name="TimeslotDelete[]" type="checkbox" value="{{timeslot.id}}"/></td>
                 </tr>
                 {% endfor %}
 
@@ -47,7 +44,7 @@
     <form method="post" action="/Administrator/addTimeslot" id="addTimeslot">
         <input type="text" name="timeslotName" placeholder="Timeslotnaam">
 
-        <input class="btn btn-default" type="submit" name="submit" value="Toevoegen">
+        <button class="btn btn-default" type="submit" name="submit" value="Toevoegen">Toevoegen</button>
     </form>
 </article>
 

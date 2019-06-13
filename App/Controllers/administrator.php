@@ -154,7 +154,7 @@ class Administrator extends authenticated
     {
         $this->adminupdate = admin::clearAdminUser($this->user->id);
         if (isset($_POST['is_admin'])) {
-            print_r($_POST['is_admin']);
+
             foreach ($_POST['is_admin'] as $selected) {
                 $this->adminupdate = Admin::activateAdminUser($selected);
 

@@ -26,13 +26,13 @@ class Interest extends Model
 
     public static function getSelectedInterest($id)
     {
-        $sql = 'SELECT interest.Interest
+        $sql = 'SELECT Interest
                 FROM Interest
-                WHERE interest.id IN (
-                    SELECT likes.id_Interest
+                WHERE id IN (
+                    SELECT id_Interest
                     FROM Likes
-                    WHERE likes.id_user = :id
-                ) AND interest.is_active';
+                    WHERE id_user = :id
+                ) AND Interest.is_active';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

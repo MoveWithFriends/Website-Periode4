@@ -39,7 +39,13 @@ Class Profile extends Authenticated
     public function showAction()
     {
         $id = $this->user->id;
+
         $this->matches = Matches::getMatches($id);
+
+        /*        if ($this->matches == "") {
+                    $this->matches = Matches::getMatchesB($id);
+                }*/
+
         $countMatches = count($this->matches);
 
         $this->activities = Interest::getSelectedInterest($id);
@@ -65,14 +71,19 @@ Class Profile extends Authenticated
             $timeslot = ($selected->id_Timeslot);
             $day = ($selected->id_Day);
             $intID = ($selected->id_Interest);
-            $name = ($selected->NameB);
 
+            if ($selected->NameB == $id) {
+                $name = ($selected->NameA);
+            } else {
+                $name = ($selected->NameB);
+            }
 
             $timeslotName = Availability::getSelectedTimeslot($timeslot)->Timeslot;
             $dayName = Availability::getSelectedDay($day)->Day;
             $InterestName = Interest::getInterestName($intID)->Interest;
             $usersmail = User::findByID($name)->email;
             $usersname = User::findByID($name)->firstname;
+
 
             /*                echo "$dayName $timeslotName en activiteit $intID met $usersname ( $usersmail ) <br>";*/
 

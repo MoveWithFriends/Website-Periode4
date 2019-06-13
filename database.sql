@@ -36,10 +36,14 @@ create table Timeslot
 -- auto-generated definition
 create table Interest
 (
-    id       int(10)    auto_increment not null
+    id        int(10) auto_increment
         primary key,
-    Interest varchar(12) null
+    Interest  varchar(50)          not null,
+    is_active tinyint(1) default 1 null
 );
+
+create index Interest
+    on Interest (Interest);
 
 create table remembered_logins
 (

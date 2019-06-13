@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
 use \Core\View;
 use \App\Auth;
 
@@ -11,7 +12,7 @@ use \App\Auth;
  *
  * PHP version 7.0
  */
-class Contact extends \Core\Controller
+class Contact extends Controller
 {
 
     /**
@@ -21,6 +22,7 @@ class Contact extends \Core\Controller
      */
     public function indexAction()
     {
+
         View::renderTemplate('contact/index.html');
     }
 }

@@ -65,7 +65,7 @@
 
 {% block body %}
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
-    <h1>Sign up</h1>
+    <h1>Inschrijven</h1>
 
     {% if user.errors is not empty %}
     <p>Errors:</p>
@@ -118,6 +118,18 @@
                 <input id="male" type="radio" name="gender" value="man" checked> Man<br>
                 <label for="female"></label>
                 <input id="female" type="radio" name="gender" value="vrouw"> Vrouw<br>
+            </div>
+
+        </div>
+        <div class=" row">
+            <div class="form-group column">
+                <p>Voorkeur om mee te sporten</p>
+                <label for="male"></label>
+                <input id="male" name="preferredgender" type="radio" value="man"> Man<br>
+                <label for="female"></label>
+                <input id="female" name="preferredgender" type="radio" value="vrouw"> Vrouw<br>
+                <label for="Beide"></label>
+                <input checked id="Beide" name="preferredgender" type="radio" value="geen"> Geen voorkeur<br>
             </div>
 
         </div>

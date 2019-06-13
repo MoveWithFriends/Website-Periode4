@@ -11,32 +11,24 @@ class Config
 {
 
     /**
-     * Database host
-     * @var string
+     * Locale instellingen
      */
-    /*    const DB_HOST = 'db.movewithfriends.nl';*/
+
     const DB_HOST = 'localhost';
-
-    /**
-     * Database name
-     * @var string
-     */
-    const DB_NAME = 'MWFregistration';
-    /*    const DB_NAME = 'md319900db449972';*/
-
-    /**
-     * Database user
-     * @var string
-     */
-    /*    const DB_USER = 'md319900db449972';*/
     const DB_USER = 'root';
 
+
+    const DB_PASSWORD = '';
+    const DB_NAME = 'MoveWithFriends';
+
     /**
-     * Database password
-     * @var string
+     * mijndomein instellingen
      */
-    /*    const DB_PASSWORD = 'Tweeling33$';*/
-    const DB_PASSWORD = 'root';
+    /*    const DB_NAME = 'md319900db449972';
+            const DB_PASSWORD = 'Tweeling33$';
+            const DB_HOST = 'db.movewithfriends.nl';
+        const DB_USER = 'md319900db449972';*/
+
     /**
      * Show or hide error messages on screen
      * @var boolean
