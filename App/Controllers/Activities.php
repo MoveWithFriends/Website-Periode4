@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Models\Admin;
+use App\Models\Matches;
 use App\Models\User;
 use \Core\View;
 use \App\Models\Interest;
@@ -35,9 +36,14 @@ class activities extends authenticated
      */
     public function indexAction()
     {
+        $id = $this->user->id;
+        $this->matches = Matches::getMatches($id);
+
+        $countMatches = count($this->matches);
 
         view::rendertemplate('Activities/index.html', [
-            'interests' => $this->interests
+            'interests' => $this->interests,
+            'count' => $countMatches
         ]);
 
     }

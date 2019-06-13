@@ -130,13 +130,13 @@ class Admin extends Model
     public static function activateAdminUser($user)
     {
         $sql = 'UPDATE users
-                SET is_admin = :is_admin
+                SET is_admin = 1
                 WHERE id =:id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->execute(array(':id' => $user, ':is_admin' => 1));
+        $stmt->execute(array(':id' => $user));
     }
 
     public static function clearAdminUser($current)

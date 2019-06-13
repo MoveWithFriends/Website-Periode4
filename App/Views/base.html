@@ -8,9 +8,22 @@
     <meta name="keywords" content="beweging, sporten, activiteiten, samen, buddy, maatje, vriend, move, with, friends">
     <title>MovewithFriends homepage</title>
     <link rel="icon" href="/images/iconmwf.png" type="image/gif" sizes="16x16">
+    <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" rel="stylesheet">
+
+    <!-- Optional theme -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" rel="stylesheet">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script crossorigin="anonymous" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
     <script type="text/javascript"
             src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -30,7 +43,7 @@
         <img class="img-responsive" src="/images/logomwf.png" style=" position: absolute; z-index: 2;" alt="">
     </a>
         {% if current_user %}
-        <p class="logofoot"> Hallo {{current_user.firstname }}</p>
+        <p class="logofoot" style=" position: absolute; z-index: 2;"> Hallo {{current_user.firstname }}</p>
         {% else %}
         <p class="logofoot" style=" position: absolute; z-index: 2;"> Move with Friends</p>
         {% endif%}
@@ -89,7 +102,7 @@
                     <a class="nav-link" href="/admin">Admin<span class="sr-only">(current)</span></a>
                 </li>
                 {% endif %}
-                <li class="nav-item active">
+                <li class=" active">
                     <a class="nav-link" href="/Activities/index">Activiteiten<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
@@ -105,7 +118,7 @@
                         <span class="badge badge-success">{{count}}</span> Profiel </a>
                 </li>
                 {% endif %}
-                <li class="nav-item active"><a class="nav-link" href="/logout"> Uitloggen</a></li>
+
                 {% endif %}
             </ul>
         </div>

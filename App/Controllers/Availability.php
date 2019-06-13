@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Flash;
+use App\Models\Matches;
 use App\Models\Timeslot;
 use App\Models\User;
 use \Core\View;
@@ -34,12 +35,17 @@ class availability extends authenticated
 
     public function indexAction()
     {
+        $id = $this->user->id;
+        $this->matches = Matches::getMatches($id);
+
+        $countMatches = count($this->matches);
         $availables = \App\Models\Availability::getSelected($this->user->id);
 
         view::rendertemplate('Available/index.html', [
             'timeslots' => $this->timeslots,
             'days' => $this->days,
-            'availables' => $availables
+            'availables' => $availables,
+            'count' => $countMatches
         ]);
 
 
