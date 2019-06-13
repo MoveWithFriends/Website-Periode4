@@ -8,15 +8,12 @@
     <script src="/js/csvDownload.js"></script>
 
     <h1>Gebruikers overzicht</h1>
-
-    <nav class="navbar navbar-expand-lg sticky-top" id="kopje1">
-        <ul class="nav navbar-nav flex-row justify-content-between">
-            <li>
-            <li class="nav-item"><a href="/administrator/Activity">Activiteiten</a></li>
-            <li class="nav-item"><a href="/administrator/Timeslot">Timeslots</a></li>
-            <li class="nav-item"><a href="/administrator/Users">Gebruikers</a></li>
-            </li>
-        </ul>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <a href="/administrator/Activity" class="btn btn-default" role="button">Activiteiten</a>
+            <a href="/administrator/Timeslot" class="btn btn-default" role="button">Beschikbaarheid</a>
+            <a href="/administrator/Users" class="btn btn-default active" role="button">Gebruikers</a>
+        </form>
     </nav>
     <br>
     <form method="post" action="/administrator/search">
@@ -25,7 +22,7 @@
             <option value="firstname">Voornaam</option>
             <option value="lastname">Achternaam</option>
         </select>
-        <input class="btn btn-default" name="submit" type="submit" value="Zoek">
+        <button class="btn btn-default" name="submit" type="submit" value="Zoek">Zoek</button>
     </form>
     <form method="post" action="/administrator/adminupdate">
         <br>
