@@ -22,10 +22,6 @@
           <option name="url" value="git@github.com:/MoveWithFriends/Website-Periode4.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
-        <UrlAndUserName>
-          <option name="url" value="https://github.com/MoveWithFriends/Website-Periode4.git" />
-          <option name="userName" value="" />
-        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\xampp\htdocs" />

@@ -75,7 +75,7 @@ class Interest extends Model
 
     public static function deactivateInterest()
     {
-        $sql = 'UPDATE Interest
+        $sql = 'UPDATE interest
                 SET is_active = 0';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
