@@ -19,7 +19,7 @@ class Config
 
 
     const DB_PASSWORD = '';
-    const DB_NAME = 'md319900db449972'; // mijndomein MoveWithFriends
+    const DB_NAME = 'MoveWithFriends';
 
     /**
      * mijndomein instellingen
