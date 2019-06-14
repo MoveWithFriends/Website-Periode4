@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     {% block header %}
     <meta charset="utf-8">
@@ -26,8 +26,7 @@
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
 
 
-    <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>$(document).ready(function () {
         $("input[checked]").next('input[type=checkbox]').remove();
@@ -40,11 +39,10 @@
             <img class="img-fluid" src="/images/logomwf.png" style=" position: absolute; z-index: 2;" alt="">
     </a>
 </div>
-</a>
 <div>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div id="google_translate_element"
-             alt="" style=" position: absolute; z-index: 2; right: 1%; top: 2%; color: white;">
+             style=" position: absolute; z-index: 2; right: 1%; top: 2%; color: white;">
     </div>
 
         {% if current_user %}
@@ -126,18 +124,19 @@
                 </li>
                 {% endif %}
                 {% endif %}
-            {% if current_user %}
-            <div class="navbar-brand">
-                <a href="/logout"><img src="/images/loginicon-logout.png" title="Logout" style="margin-left: 15px;"
-                                       width="25" height="25" alt="Logout"></a>
-            </div>
-            {% endif %}
-            {% if not current_user %}
-            <div class="navbar-brand">
-                <a href="/login/new"><img src="/images/loginicon.png" title="LOGIN" style="margin-left: 15px;"
-                                          width="25" height="25" alt="Login"></a>
-            </div>
-            {% endif %}
+                {% if current_user %}
+                <div class="navbar-brand">
+                    <a href="/logout"><img src="/images/loginicon-logout.png" title="Logout" style="margin-left: 15px;"
+                                           width="25" height="25" alt="Logout"></a>
+
+                </div>
+                {% endif %}
+                {% if not current_user %}
+                <div class="navbar-brand">
+                    <a href="/login/new"><img src="/images/loginicon.png" title="LOGIN" style="margin-left: 15px;"
+                                              width="25" height="25" alt="Login"></a>
+                </div>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -152,7 +151,7 @@
 {% endblock %}
 {% block footer %}
 <div class="content"></div>
-<footer class="app-footer backgroundnav footer" style="vertical-align:">
+<footer class="app-footer backgroundnav footer">
     <div class="px-3 py-1 d-none d-lg-block d-xl-block">
         <div class="row">
             <div class="col-lg-3 col-xl-2">
@@ -164,7 +163,7 @@
                 </ul>
             </div>
             <div class="col-lg-1 col-xl-1.5">
-                <img class="img-width" src="/images/joosticon.png" alt="Joost" class="img-responsive2">
+                <img class="img-width" src="/images/joosticon.png" alt="Joost">
             </div>
             <div class="col-lg-1 col-xl-1">
                 <p><strong>Joost Oomen</strong></p>
@@ -182,7 +181,7 @@
                 </div>
             </div>
             <div class="col-lg-1 col-xl-1.5">
-                <img class="img-width" src="/images/nickicon.png" alt="Nick" class="img-responsive2">
+                <img class="img-width" src="/images/nickicon.png" alt="Nick">
             </div>
             <div class="col-lg-1 col-xl-1">
                 <p><strong>Nick Sluiters</strong></p>
@@ -200,7 +199,8 @@
                 </div>
             </div>
             <div>
-                <ul class="justify-content-between">
+                <ul style="list-style: none;">
+                    <li>
                     <a class="navbar-brand" target="_blank" href="https://www.facebook.com/movewithfriends.breda.3">
                         <img src="/images/facebookicon.png" title="Volg ons op Facebook" style="margin-left: 15px;"
                              width="25" height="25" alt="facebook">
@@ -213,6 +213,7 @@
                     <a class="navbar-brand" target="_blank" href="https://www.instagram.com/movewithfriends/">
                         <img src="/images/instagramicon.png" title="Volg ons op Instagram" style="margin-left: 15px;"
                              width="25" height="25" alt="instagram"></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -229,7 +230,7 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript">
+<script>
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'nl'}, 'google_translate_element');
     }
