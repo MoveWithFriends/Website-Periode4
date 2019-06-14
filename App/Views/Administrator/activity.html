@@ -8,9 +8,9 @@
     <h1>Activiteiten overzicht</h1>
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
-            <a href="/administrator/Activity" class="btn btn-default active" role="button">Activiteiten</a>
-            <a href="/administrator/Timeslot" class="btn btn-default" role="button">Beschikbaarheid</a>
-            <a href="/administrator/Users" class="btn btn-default " role="button">Gebruikers</a>
+            <a class="btn btn-default active" href="/administrator/Activity" role="button">Activiteiten</a>
+            <a class="btn btn-default" href="/administrator/Timeslot" role="button">Beschikbaarheid</a>
+            <a class="btn btn-default " href="/administrator/Users" role="button">Gebruikers</a>
         </form>
     </nav>
     {% for message in flash_messages %}
@@ -18,7 +18,7 @@
         {{ message.body }}
     </div>
     {% endfor %}
-    <form method="post" action="/Administrator/updateActivity" id="formActivity">
+    <form action="/Administrator/updateActivity" id="formActivity" method="post">
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>Activiteit</th>
@@ -26,43 +26,40 @@
                 <th>Verwijderen</th>
             </tr>
 
-            <ul>
-
+            <!--<ul>-->
                 {% for interest in interests %}
                 <tr>
                     {%if interest.is_active %}
-                    <td><label for="{{interest.id}}">{{interest.Interest}}</td>
+                    <td><label for="{{interest.id}}">{{interest.Interest}}</label></td>
                     <td>
-                        <input id="{{interest.id}}" type="checkbox" name="InterestActivate[]" value="{{interest.id}}"
-                               checked/></td>
+                        <input checked id="{{interest.id}}" name="InterestActivate[]" type="checkbox"
+                               value="{{interest.id}}"/></td>
                     <td>
-                        <input type="checkbox" name="InterestDelete[]" value="{{interest.id}}"/></td>
+                        <input name="InterestDelete[]" type="checkbox" value="{{interest.id}}"/></td>
 
-                </tr>
-                {% else %}
-                <tr>
-                    <td><label for="{{interest.id}}"> {{interest.Interest}}</td>
+                    {% else %}
+
+                    <td><label for="{{interest.id}}"> {{interest.Interest}}</label></td>
                     <td>
-                        <input id="{{interest.id}}" type="checkbox" name="InterestActivate[]" value="{{interest.id}}"/>
+                        <input id="{{interest.id}}" name="InterestActivate[]" type="checkbox" value="{{interest.id}}"/>
                     </td>
                     <td>
-                        <input type="checkbox" name="InterestDelete[]" value="{{interest.id}}"/></td>
+                        <input name="InterestDelete[]" type="checkbox" value="{{interest.id}}"/></td>
                     {%endif %}
                 </tr>
                 {% endfor %}
 
-
-            </ul>
+           <!-- </ul>-->
         </table>
         <!--    <button class="btn btn-default" onclick="exportTableToCSV('members.csv')">Export HTML tabel naar CSV file</button>-->
 
-        <button type="submit" class="btn btn-default" value="Submit">Aanpassingen doorvoeren</button>
+        <button class="btn btn-default" type="submit" value="Submit">Aanpassingen doorvoeren</button>
 
     </form>
     <br>
-    <form method="post" action="/Administrator/addActivity" id="addActivity">
-        <input type="text" name="activityName" placeholder="Activiteitnaam">
-        <button class="btn btn-default" type="submit" name="submit" value="Toevoegen">Toevoegen</button>
+    <form action="/Administrator/addActivity" id="addActivity" method="post">
+        <input name="activityName" placeholder="Activiteitnaam" type="text">
+        <button class="btn btn-default" name="submit" type="submit" value="Toevoegen">Toevoegen</button>
     </form>
 </article>
 
