@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profiel{% endblock %}
 
 {% block body %}
 <script src="/js/sortTable.js"></script>
@@ -25,28 +25,29 @@
     </dl>
 
 
-    <a href="/profile/edit">Aanpassen</a>
+    <a href="/profile/edit" class="btn btn-default active" role="button">Aanpassen</a>
 
-    <h2>Gekozen activiteiten</h2>
+     <div class="row">
+        <div class="col-md-6 bg-light opacity">
+            <h2>Gekozen activiteiten</h2>
+                <dl class="dl-horizontal">
+                {% for activity in activities %}
+                <dt></dt>
+                <dd>{{ activity.Interest }}</dd>
+                {% endfor %}
+            </dl>
+        </div>
+            <div class="col-md-6 bg-light opacity">
+                <h2>Gekozen tijdsmomenten</h2>
+                    <dl class="dl-horizontal">
+                        {% for available in availables %}
+                        <dt></dt>
+                        <dd>{{ available[0] }}{{ available[1] }}</dd>
 
-    <dl class="dl-horizontal">
-        {% for activity in activities %}
-        <dt></dt>
-        <dd>{{ activity.Interest }}</dd>
-        {% endfor %}
-    </dl>
-
-    <h2>Gekozen tijdsmomenten</h2>
-
-    <dl class="dl-horizontal">
-        {% for available in availables %}
-
-        <dt></dt>
-        <dd>{{ available[0] }}{{ available[1] }}</dd>
-
-        {% endfor %}
-
-    </dl>
+                        {% endfor %}
+                    </dl>
+            </div>
+    </div>
 
     {% if matches is not empty %}
     <h2>Matches</h2>
