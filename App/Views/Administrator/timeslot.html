@@ -25,16 +25,14 @@
                 <th>Selecteren</th>
             </tr>
 
-            <ul>
-                {% for timeslot in timeslots %}
-                <tr>
-                    <td> {{timeslot.Timeslot}}</td>
-                    <td>
-                        <input name="TimeslotDelete[]" type="checkbox" value="{{timeslot.id}}"/></td>
-                </tr>
-                {% endfor %}
+            {% for timeslot in timeslots %}
+            <tr>
+                <td> {{timeslot.Timeslot}}</td>
+                <td>
+                    <input name="TimeslotDelete[]" type="checkbox" value="{{timeslot.id}}"/></td>
+            </tr>
+            {% endfor %}
 
-            </ul>
         </table>
         <!--    <button class="btn btn-default" onclick="exportTableToCSV('members.csv')">Export HTML tabel naar CSV file</button>-->
 
