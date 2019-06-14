@@ -57,8 +57,8 @@ class User extends Model
             $this->activation_token = $token->getValue();
 
 
-            $sql = 'INSERT INTO users (firstname, lastname, email, password_hash, phonenumber, gender, birthdate, activation_hash)
-                    VALUES (:firstname, :lastname, :email, :password_hash, :phonenumber, :gender, :birthdate, :activation_hash)';
+            $sql = 'INSERT INTO users (firstname, lastname, email, password_hash, phonenumber, gender, birthdate, activation_hash, preferredgender)
+                    VALUES (:firstname, :lastname, :email, :password_hash, :phonenumber, :gender, :birthdate, :activation_hash, :preferredgender)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -69,7 +69,7 @@ class User extends Model
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':phonenumber', $this->phonenumber, PDO::PARAM_STR);
             $stmt->bindValue(':gender', $this->gender, PDO::PARAM_STR);
-            //$stmt->bindValue(':preferredgender', $this->preferredgender, PDO::PARAM_STR);
+            $stmt->bindValue(':preferredgender', $this->preferredgender, PDO::PARAM_STR);
             $stmt->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
             $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
 

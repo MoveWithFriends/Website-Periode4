@@ -1,11 +1,12 @@
 -- auto-generated definition
+-- database MoveWithFriends
 create table users
 (
     id                        int(10) auto_increment
         primary key,
     firstname                 varchar(50)                          not null,
     lastname                  varchar(50)                          not null,
-    email                     varchar(255)                         not null,
+    email                     varchar(100)                         not null,
     password_hash             varchar(255)                         not null,
     phonenumber               varchar(20)                          not null,
     gender                    varchar(10)                          null,
@@ -123,7 +124,7 @@ create index id_Timeslot
     on Available (id_Timeslot);
 
 
-    
+
 -- auto-generated definition
 create view combined as
 select sametime.NameA           AS NameA,
@@ -131,32 +132,32 @@ select sametime.NameA           AS NameA,
        sametime.id_Day          AS id_Day,
        sametime.id_Timeslot     AS id_Timeslot,
        sameinterest.id_Interest AS id_Interest
-from ((md319900db449972.sametime join md319900db449972.sameinterest on ((
+from ((movewithfriends.sametime join movewithfriends.sameinterest on ((
         (sametime.NameA = sameinterest.NameA) and (sametime.NameB = sameinterest.NameB))))
-         join md319900db449972.gendermatch
+         join movewithfriends.gendermatch
               on (((sametime.NameA = gendermatch.NameA) and (sametime.NameB = gendermatch.NameB))));
 
 -- auto-generated definition
 create view gendermatch as
 select A.id AS NameA, B.id AS NameB
-from (md319900db449972.users A
-         join md319900db449972.users B on (((A.id < B.id) and ((A.preferredgender = B.gender) or
+from (movewithfriends.users A
+         join movewithfriends.users B on (((A.id < B.id) and ((A.preferredgender = B.gender) or
                                                                             (A.preferredgender = 'geen')) and
                                                  ((B.preferredgender = A.gender) or
                                                   (B.preferredgender = 'geen')))));
-                                                  
+
 -- auto-generated definition
 create view sameinterest as
 select A.id_user AS NameA, B.id_user AS NameB, A.id_Interest AS id_Interest
-from (md319900db449972.Likes A
-         join md319900db449972.Likes B
+from (movewithfriends.Likes A
+         join movewithfriends.Likes B
               on (((A.id_Interest = B.id_Interest) and (A.id_user <> B.id_user))));
 
 -- auto-generated definition
 create view sametime as
 select A.id_User AS NameA, B.id_User AS NameB, A.id_Day AS id_Day, A.id_Timeslot AS id_Timeslot
-from (md319900db449972.available A
-         join md319900db449972.available B
+from (movewithfriends.available A
+         join movewithfriends.available B
               on (((A.id_Day = B.id_Day) and (A.id_Timeslot = B.id_Timeslot) and
                    (A.id_User <> B.id_User))));
 

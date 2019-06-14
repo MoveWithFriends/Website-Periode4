@@ -21,13 +21,6 @@ class Config
     const DB_PASSWORD = '';
     const DB_NAME = 'MoveWithFriends';
 
-    /**
-     * mijndomein instellingen
-     */
-    /*    const DB_NAME = 'md319900db449972';
-            const DB_PASSWORD = 'Tweeling33$';
-            const DB_HOST = 'db.movewithfriends.nl';
-        const DB_USER = 'md319900db449972';*/
 
     /**
      * Show or hide error messages on screen

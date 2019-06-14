@@ -6,10 +6,9 @@
 
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
 
-    <h1>Activiteiten en beschikbaarheid</h1>
+    <h1>Activiteiten</h1>
     <p>Hieronder de activiteiten waar je uit kunt kiezen.</p>
 
-    <h2>Activiteit</h2>
     <form method="post" action="/Activities/select">
         <table class="table table-striped table-bordered table-hover">
             <tr>
@@ -17,22 +16,21 @@
                 <th>Voorkeur</th>
             </tr>
 
-            <ul>
-                {% for interest in interests if interest.is_active %}
-                <tr>
+            {% for interest in interests if interest.is_active %}
 
-                    <td><label for="{{interest.id}}">{{interest.Interest}}</td>
-                    <td class="checkbox-centered">
-                        <input id="{{interest.id}}" name="Interest[]" type="checkbox" value="{{interest.id}}"/></td>
+            <tr>
+                <td><label for="{{interest.id}}">{{interest.Interest}}</label></td>
+                <td class="checkbox-centered">
+                    <input id="{{interest.id}}" name="Interest[]" type="checkbox" value="{{interest.id}}"/></td>
 
-                </tr>
-                {% endfor %}
-            </ul>
+            </tr>
+            {% endfor %}
+
 
         </table>
 
         <button type="submit" class="btn btn-default" value="Submit">Opslaan</button>
-        </ul>
+
 
     </form>
 </article>
