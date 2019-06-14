@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFirstFont;
-    src: url('/fonts/Monoglyceride.ttf');
+    src: url("/fonts/Monoglyceride.ttf");
 }
 
 /* Set a style for all buttons */
@@ -14,14 +14,14 @@ button:hover {
 }
 
 /* Center the image and position the close button */
-.imgcontainer {
+/*.imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     position: relative;
-}
+}*/
 
 /* The Modal (background) */
-.modal {
+/*.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -31,9 +31,10 @@ button:hover {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-}
+}*/
 
 /* Modal Content Box */
+/*
 .modal-content {
     background-color: #fefefe;
     margin: 4% auto 15% auto;
@@ -41,8 +42,10 @@ button:hover {
     width: 35%;
     padding-bottom: 20px;
 }
+*/
 
 /* The Close Button (x) */
+/*
 .close {
     position: absolute;
     right: 25px;
@@ -51,16 +54,17 @@ button:hover {
     font-size: 35px;
     font-weight: bold;
 }
+*/
 
-.close:hover, .close:focus {
+/*.close:hover, .close:focus {
     color: #fa39ff;
     cursor: pointer;
-}
+}*/
 
 /* Add Zoom Animation */
-.animate {
+/*.animate {
     animation: zoom 0.6s
-}
+}*/
 
 @keyframes zoom {
     from {
@@ -85,12 +89,12 @@ nav {
     font-weight: bold;
 }
 
-.navbarright {
+/*.navbarright {
     float: right;
     text-align: right;
-}
+}*/
 
-.nav-link   {
+.nav-link {
     color: black;
 }
 
@@ -109,16 +113,16 @@ nav {
     border-radius: 100%;
 }
 
-.imageresize {
+/*.imageresize {
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 100%;
-}
+}*/
 
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: black; /* Changes regular toggle color */
-}
+/*.navbar-default .navbar-toggle .icon-bar {
+    background-color: black; !* Changes regular toggle color *!
+}*/
 
 .collapsed {
     color: black;
@@ -136,9 +140,9 @@ nav {
 }
 
 
-button:focus {
+/*button:focus {
     outline: 0;
-}
+}*/
 
 .opacity {
     opacity: 0.85;
@@ -154,10 +158,10 @@ body {
     background-attachment: fixed;
 }
 
-
-.backgrounddiv {
-    background-color: light;
-}
+/*not in use anymore*/
+/*.backgrounddiv {
+    background-color: salmon;
+}*/
 
 ul.homeicon {
     padding-left: 40px;
@@ -181,59 +185,62 @@ ul.phoneicon {
     margin-bottom: 0em;
 }
 
-.wrapper {
+/*not in use anymore*/
+/*.wrapper {
     display: block;
     max-width: 500px;
     margin: 1% auto;
-}
+}*/
 
 .text-center {
     text-align: center;
     margin-bottom: 10px;
 }
 
-.text, .submit {
+/*not in use anymore*/
+/*.text, .submit {
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
     margin-bottom: 15px;
     border: none;
     font-size: 24px;
-}
+}*/
 
-.text {
+/*.text {
     border: 1px solid #ccc;
 
-}
+}*/
 
-.submit {
+/*not in use anymore*/
+/*.submit {
     text-transform: uppercase;
     background: lightblue;
     color: #fff;
-}
+}*/
 
-.message {
+/*.message {
     vertical-align: middle;
     margin-bottom: 15px;
     border-width: 1px;
     border-style: solid;
-}
+}*/
 
-.message.error {
+/*.message.error {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
-}
+}*/
 
 .img-width {
     max-width: 100%;
 }
 
-.message.success {
+/*.message.success {
     color: #155724;
     background-color: #d4edda;
     border-color: #c3e6cb;
-}
+}*/
 
 /* Create two equal columns that floats next to each other */
 .column {

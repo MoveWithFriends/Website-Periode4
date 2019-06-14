@@ -1,5 +1,5 @@
-Password reset
+Reset wachtwoord
 
-Please click the following link to reset your password:
+Klik op de onderstaande link voor een Reset van uw wachtwoord:
 
 {{ url }}
