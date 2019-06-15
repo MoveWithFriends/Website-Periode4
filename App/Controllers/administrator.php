@@ -56,7 +56,11 @@ class Administrator extends authenticated
             'interests' => $this->interests
         ]);
     }
-
+    /**
+     * Show the add timeslot page
+     *
+     * @return void
+     */
     public function timeslotAction()
     {
         view::rendertemplate('Administrator/timeslot.html', [
@@ -78,7 +82,11 @@ class Administrator extends authenticated
             'users' => $this->users
         ]);
     }
-
+    /**
+     * Admin can add an activity to the database
+     *
+     * @return void
+     */
     public function addActivityAction()
     {
         if (isset($_POST['activityName']) && ($_POST['activityName'] !== "")) {
@@ -94,6 +102,11 @@ class Administrator extends authenticated
         }
     }
 
+    /**
+     * User can update the selected activities in the table
+     *
+     * @return void
+     */
     public function updateActivityAction()
     {
         if (isset($_POST['InterestDelete']) && ($_POST['InterestDelete'] !== "")) {
@@ -106,20 +119,22 @@ class Administrator extends authenticated
         $this->redirect('/administrator/activity');
     }
 
+    /**
+     * General method to delete all activities before adding the newly chosen ones
+     *
+     * @return void
+     */
     public function deleteActivityAction()
     {
         foreach ($_POST['InterestDelete'] as $selected) {
             $this->deleted = Admin::deleteActivity($selected);
         }
     }
-
-    public function deleteTimeslotAction()
-    {
-        foreach ($_POST['TimeslotDelete'] as $selected) {
-            $this->deleted = Admin::deleteTimeslot($selected);
-        }
-        $this->redirect('/administrator/timeslot');
-    }
+    /**
+     * General method to delete all activities before adding the newly chosen ones
+     *
+     * @return void
+     */
 
     public function addTimeslotAction()
     {

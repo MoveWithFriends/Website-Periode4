@@ -18,8 +18,13 @@ class Config
     const DB_USER = 'root';
 
 
-    const DB_PASSWORD = '';
-    const DB_NAME = 'MoveWithFriends';
+    const DB_PASSWORD = 'root';
+    const DB_NAME = 'MWFregistration';
+
+    /*    const DB_NAME = 'md319900db449972';
+        const DB_PASSWORD = 'Tweeling33$';
+        const DB_HOST = 'db.movewithfriends.nl';
+    const DB_USER = 'md319900db449972';*/
 
 
     /**

@@ -20,7 +20,7 @@ Class mail
             $mail->Host = 'mail.mijndomein.nl';                   // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                                   // Enable SMTP authentication
             $mail->Username = 'info@movewithfriends.nl';                     // SMTP username
-            $mail->Password = 'Tweeling3';                               // SMTP password
+            $mail->Password = '9BEfwqm-gckAjzj3';                               // SMTP password
             $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 

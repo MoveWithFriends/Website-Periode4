@@ -39,7 +39,7 @@
 
 {% block body %}
 
-<h1>Reset Password</h1>
+
 
 {% if user.errors is not empty %}
 <p>Errors:</p>
@@ -50,6 +50,7 @@
 </ul>
 {% endif %}
 <article class="container opacity shadow p-3 mb-4 mt-4 col-xl-8 bg-light">
+    <h1>Reset Password</h1>
 <form method="post" action="/password/reset-password" id="formPasswword">
 
     <input type="hidden" name="token" value="{{ token }}"/>
