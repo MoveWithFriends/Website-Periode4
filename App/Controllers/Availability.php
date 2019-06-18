@@ -9,9 +9,10 @@ use App\Models\Timeslot;
 use App\Models\User;
 use \Core\View;
 use \App\Models\Day;
+use \App\Controllers\Authenticated;
 
 
-class availability extends authenticated
+class availability extends Authenticated
 {
 
     private $interests;

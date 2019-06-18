@@ -84,7 +84,7 @@ abstract class Controller
     {
         if (!Auth::getUser()) {
 
-            Flash::addMessage('Please login to access that page', Flash::INFO);
+            Flash::addMessage('U moet inloggen om toegang te krijgen tot deze pagina', Flash::INFO);
 
             Auth::rememberRequestedPage();
 

@@ -45,7 +45,7 @@ class Interest extends Model
 
     public static function getInterestName($id)
     {
-        $sql = 'SELECT Interest.Interest
+        $sql = 'SELECT Interest
                 FROM Interest
                 WHERE Interest.id = :id ';
 

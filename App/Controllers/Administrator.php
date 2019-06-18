@@ -12,7 +12,7 @@ use \App\Models\user;
 
 
 
-class Administrator extends authenticated
+class Administrator extends Authenticated
 {
     private $interests;
     private $timeslots;

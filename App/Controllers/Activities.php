@@ -8,9 +8,11 @@ use App\Models\Matches;
 use App\Models\User;
 use \Core\View;
 use \App\Models\Interest;
+use \App\Controllers;
 
 
-class activities extends authenticated
+
+class activities extends Authenticated
 {
 
     private $interests;
@@ -28,6 +30,8 @@ class activities extends authenticated
         $this->interests = Interest::getInterest();
         $this->users = Admin::getUsers();
 
+
+
     }
     /**
      * Show all activities in the database
@@ -38,11 +42,13 @@ class activities extends authenticated
     {
         $id = $this->user->id;
         $this->matches = Matches::getMatches($id);
-
+        $this->activities = Interest::getSelectedInterest($id);
+            var_dump($this->activities);
         $countMatches = count($this->matches);
-
+        var_dump($countMatches);
         view::rendertemplate('Activities/index.html', [
             'interests' => $this->interests,
+            'activities' => $this->activities,
             'count' => $countMatches
         ]);
 
