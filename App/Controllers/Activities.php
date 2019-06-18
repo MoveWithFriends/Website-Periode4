@@ -16,6 +16,7 @@ class activities extends Authenticated
 {
 
     private $interests;
+    private $activities;
 
     protected function before()
     {
@@ -42,13 +43,13 @@ class activities extends Authenticated
     {
         $id = $this->user->id;
         $this->matches = Matches::getMatches($id);
-        $this->activities = Interest::getSelectedInterest($id);
-            var_dump($this->activities);
+        $activities = Interest::getSelectedInterest($id);
+           /* print_r($activities);*/
         $countMatches = count($this->matches);
-        var_dump($countMatches);
+
         view::rendertemplate('Activities/index.html', [
             'interests' => $this->interests,
-            'activities' => $this->activities,
+            'activities' => $activities,
             'count' => $countMatches
         ]);
 
