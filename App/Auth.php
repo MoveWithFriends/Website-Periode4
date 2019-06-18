@@ -58,7 +58,7 @@ class Auth
 
     public static function getReturnToPage()
     {
-        return $_SESSION['return_to'] ?? '/';
+        return $_SESSION['return_to'] ?? '/profile/show';
     }
 
     public static function getUser()

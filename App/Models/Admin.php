@@ -11,7 +11,7 @@ use PDO;
  *
  * PHP version 7.0
  */
-class Admin extends Model
+class Admin extends User
 {
 
     /**
