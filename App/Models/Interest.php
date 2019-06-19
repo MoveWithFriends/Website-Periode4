@@ -59,7 +59,7 @@ class Interest extends Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute(array(':id' => $id));
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 
     public static function getInterestName($id)

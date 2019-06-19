@@ -65,10 +65,14 @@ class activities extends Authenticated
     {
         $userid = $this->user->id;
 
+
         User::deleteUserActivity($userid);
 
+
         if (isset($_POST['Interest']) && ($_POST['Interest'] !== ""))
-            foreach ($_POST['Interest'] as $selected) {
+            foreach ($_POST['Interest'] as $selected)
+
+            {
 
                 User::addUserActivity($selected, $userid);
             }
