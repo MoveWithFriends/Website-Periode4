@@ -22,19 +22,19 @@
 
 
 
-                <td><label >{{interest.Interest}}</label></td>
+                <td><label for="{{interest.id}}">{{interest.Interest}}</label></td>
                 <td>
 
                     {%for activity in activities%}
 
                         {% if (activity.id == interest.id) %}
-                            <input checked name="Interest[]"
+                            <input checked id="{{interest.id}}" name="Interest[]"
                                 style="child-align: center" type="checkbox" value="{{interest.id}}"/>
 
                         {%endif%}
                     {%endfor%}
 
-                    <input name="Interest[]" style="child-align: center"
+                    <input name="Interest[]" id="{{interest.id}}" style="child-align: center"
                            type="checkbox" value="{{interest.id}}"/>
 
 

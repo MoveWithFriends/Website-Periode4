@@ -151,6 +151,15 @@ class Administrator extends Authenticated
         }
     }
 
+    public function deleteTimeslotAction()
+    {
+        foreach ($_POST['TimeslotDelete'] as $selected) {
+            $this->deleted = Admin::deleteTimeslot($selected);
+        }
+        $this->redirect('/administrator/timeslot');
+        exit;
+    }
+
     public function searchAction()
     {
         if (isset($_POST['submit']))
