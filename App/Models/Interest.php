@@ -43,6 +43,25 @@ class Interest extends Model
         return $stmt->fetchAll();
     }
 
+    public static function getSelectedInterestID($id)
+    {
+        $sql = 'SELECT id
+                FROM Interest
+                WHERE id IN (
+                    SELECT id_Interest
+                    FROM Likes
+                    WHERE id_user = :id
+                ) AND Interest.is_active';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute(array(':id' => $id));
+        return $stmt->fetch();
+    }
+
     public static function getInterestName($id)
     {
         $sql = 'SELECT Interest

@@ -34,6 +34,7 @@
             </tr>
 
             {% for interest in interests if interest.is_active %}
+
             <tr>
 
 
@@ -43,10 +44,16 @@
 
 
 
+                    <input checked name="available[]"
+                           style="child-align: center" type="checkbox" value="{{day.id}} {{timeslot.id}}"/>
+
+
                     <input name="Interest[]" style="child-align: center"
                            type="checkbox" value="{{interest.id}}"/>
 
+
                 </td>
+
 
             </tr>
             {%endfor%}

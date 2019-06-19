@@ -1,5 +1,5 @@
-Account activation
+Account activatie
 
-Please click the following link to activate your password:
+Klik AUB op de volgende link om uw wachtwoord te activeren:
 
 {{ url }}
