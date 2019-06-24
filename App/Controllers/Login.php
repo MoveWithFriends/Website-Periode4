@@ -50,6 +50,7 @@ Class Login extends Controller
         }
     }
 
+
     /**
      * Log out a user
      *
