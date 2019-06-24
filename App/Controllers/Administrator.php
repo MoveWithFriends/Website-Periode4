@@ -157,7 +157,7 @@ class Administrator extends Authenticated
             $this->deleted = Admin::deleteTimeslot($selected);
         }
         $this->redirect('/administrator/timeslot');
-        exit;
+
     }
 
     public function searchAction()
